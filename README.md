@@ -1,5 +1,8 @@
 # El Ángel 👼 — Panadería mexicana (frontend demo, sin backend)
 
+🌐 **Página pública:** https://antoniozam20x2-ship-it.github.io/el-angel-panaderia/
+- Tienda: `/` · Admin: `/admin.html` (clave demo `angel123`)
+
 Demo moderna juvenil. Todo ejemplo. Sin pago real.
 
 ## Ver local
