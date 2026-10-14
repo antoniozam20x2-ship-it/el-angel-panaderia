@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Ángel 👼 — Panadería mexicana (demo)</title>
+<meta name="description" content="Panadería mexicana El Ángel. Conchas, bolillo y pan dulce. Pide por WhatsApp. Demo frontend sin backend.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crema:#FFF6E9; --tinta:#2B1408; --muted:#7A5C44; --linea:#F3DCC3;
+  --rosa:#FF2E93; --naranja:#FF6B00; --amarillo:#FFC700; --morado:#6C2BEE; --verde:#00A66C;
+  --card:#fff; --radio:20px;
+  --sombra:6px 6px 0 #2B1408;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--crema);color:var(--tinta);font-family:Nunito,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.display{font-family:Fredoka,Nunito,sans-serif;line-height:1.02;letter-spacing:-.01em}
+.demo-bar{background:#2B1408;color:#FFC700;text-align:center;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;font-weight:800}
+header{position:sticky;top:0;z-index:60;background:rgba(255,246,233,.96);backdrop-filter:blur(6px);border-bottom:3px solid var(--tinta)}
+.bar{max-width:1180px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--tinta)}
+.sello{width:48px;height:48px;border-radius:16px;background:var(--amarillo);border:3px solid var(--tinta);display:grid;place-items:center;font-size:26px;box-shadow:3px 3px 0 var(--tinta);transform:rotate(-6deg)}
+.brand b{font-family:Fredoka;font-size:22px;display:block;line-height:1}
+.brand small{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#A34A00;font-weight:800}
+nav.desk{display:flex;gap:18px}
+nav.desk a{color:var(--tinta);text-decoration:none;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.08em;border-bottom:3px solid transparent}
+nav.desk a:hover{border-color:var(--rosa)}
+.btn{display:inline-block;background:var(--tinta);color:#fff;border:3px solid var(--tinta);border-radius:999px;padding:13px 26px;font-weight:800;text-transform:uppercase;font-size:14px;cursor:pointer;text-decoration:none;box-shadow:4px 4px 0 rgba(43,20,8,.2);font-family:Nunito}
+.btn:hover{transform:translate(-1px,-1px)}
+.btn:active{transform:translate(2px,2px);box-shadow:none}
+.btn-amarillo{background:var(--amarillo);color:var(--tinta)}
+.btn-rosa{background:#B30063;color:#fff}
+.btn-whats{background:var(--verde);border-color:#064d33;color:#fff}
+.btn-line{background:#fff;color:var(--tinta)}
+.burger{display:none;width:48px;height:48px;border-radius:14px;border:3px solid var(--tinta);background:#fff;font-size:20px;cursor:pointer;font-weight:800}
+.mobile-menu{display:none;padding:4px 18px 14px;background:var(--crema)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:12px 2px;border-bottom:2px dashed var(--linea);text-decoration:none;color:var(--tinta);font-weight:800;text-transform:uppercase;font-size:14px}
+/* HERO */
+.hero{max-width:1180px;margin:0 auto;padding:26px 18px 10px;display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center;position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:3px solid var(--tinta);border-radius:999px;padding:7px 14px;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;box-shadow:4px 4px 0 var(--tinta)}
+.badge .dot{width:10px;height:10px;border-radius:50%;background:var(--verde);display:inline-block}
+.hero h1{font-size:clamp(40px,6vw,68px);margin-top:14px}
+.hero h1 .rosa{color:var(--rosa)}
+.hero h1 .sub{ display:block; font-size:.55em; background:var(--tinta); color:var(--amarillo); display:inline-block; padding:4px 14px; border-radius:14px; transform:rotate(-1.5deg); margin-top:8px;}
+.hero p{color:var(--muted);margin-top:12px;max-width:52ch;font-size:17px}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.mini{font-size:13px;color:var(--muted);margin-top:10px}
+.mini a{color:var(--tinta);font-weight:800}
+.hero-media{position:relative}
+.marco{background:#fff;border:4px solid var(--tinta);border-radius:26px;overflow:hidden;box-shadow:8px 8px 0 var(--tinta);transform:rotate(1.5deg)}
+.marco img{display:block;width:100%;height:430px;object-fit:cover}
+.sticker{position:absolute;font-family:Fredoka;font-weight:700;padding:10px 16px;border-radius:999px;border:3px solid var(--tinta);box-shadow:4px 4px 0 var(--tinta);font-size:15px}
+.st1{top:-14px;left:-10px;background:var(--amarillo);transform:rotate(-8deg)}
+.st2{bottom:18px;right:-8px;background:var(--rosa);color:#fff;transform:rotate(6deg)}
+.st3{bottom:-14px;left:18px;background:#fff;transform:rotate(-3deg);font-size:13px}
+/* marquee */
+.marquee{background:var(--tinta);color:var(--amarillo);overflow:hidden;white-space:nowrap;padding:12px 0;margin-top:20px;border-top:3px solid var(--tinta);border-bottom:3px solid var(--tinta);font-family:Fredoka;font-size:18px}
+.marquee span{display:inline-block;padding:0 18px;animation:mover 18s linear infinite}
+@keyframes mover{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* promo */
+.promo{background:var(--tinta);color:var(--amarillo);text-align:center;padding:18px 16px;border-bottom:3px solid var(--tinta)}
+.promo b{font-family:Fredoka;font-size:clamp(20px,3.4vw,30px);display:block}
+.promo small{opacity:.95;font-size:13px;font-weight:700;color:#fff}
+/* secciones */
+section.bloque{max-width:1180px;margin:0 auto;padding:52px 18px}
+.k2{display:inline-block;font-weight:800;font-size:12px;letter-spacing:.22em;text-transform:uppercase;background:var(--amarillo);border:3px solid var(--tinta);border-radius:999px;padding:6px 14px;box-shadow:3px 3px 0 var(--tinta)}
+h2.t{font-size:clamp(32px,4.6vw,50px);margin-top:12px}
+.sub{color:var(--muted);margin-top:6px}
+.cats{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.cats button{background:#fff;border:3px solid var(--tinta);border-radius:999px;padding:9px 18px;font-weight:800;text-transform:uppercase;font-size:13px;cursor:pointer;font-family:Nunito;box-shadow:3px 3px 0 var(--tinta)}
+.cats button.activo{background:var(--tinta);color:var(--amarillo)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.card{background:var(--card);border:3px solid var(--tinta);border-radius:var(--radio);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sombra);transition:transform .15s}
+.card:hover{transform:translateY(-3px) rotate(-.4deg)}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-bottom:3px solid var(--tinta)}
+.pad{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.pad b{font-family:Fredoka;font-size:18px}
+.pad small{color:var(--muted);font-size:13px}
+.fila{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}
+.precio{font-family:Fredoka;font-weight:700;font-size:22px}
+.tag{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;background:var(--crema);border:2px solid var(--tinta);border-radius:999px;padding:3px 10px}
+.add{background:var(--tinta);color:#fff;border:0;border-radius:999px;padding:10px 18px;font-weight:800;cursor:pointer;text-transform:uppercase;font-size:12px;font-family:Nunito}
+.add:hover{background:#000}
+/* combos */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.combo{border-radius:22px;padding:22px;border:3px solid var(--tinta);box-shadow:var(--sombra);color:#fff}
+.combo.c1{background:var(--morado)} .combo.c2{background:#A5005A}
+.combo h3{font-size:24px} .combo p{opacity:.95;margin:6px 0 10px}
+.combo .precio{color:var(--amarillo);font-size:26px}
+/* seguir + opiniones + contacto */
+.panel{background:#fff;border:3px solid var(--tinta);border-radius:20px;padding:18px;box-shadow:var(--sombra);margin-top:16px}
+.panel label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.panel input{width:100%;border:3px solid var(--tinta);border-radius:12px;padding:12px;font-size:16px;font-family:inherit;margin-top:6px}
+.opis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.opi{background:#fff;border:3px solid var(--tinta);border-radius:18px;padding:16px;box-shadow:5px 5px 0 var(--tinta);transform:rotate(-.6deg)}
+.opi:nth-child(2){transform:rotate(.8deg)} .opi b{color:var(--rosa)}
+.hours{background:var(--tinta);color:#fff;text-align:center;padding:20px;border-top:3px solid var(--tinta)}
+.hours strong{color:var(--amarillo);font-family:Fredoka;font-size:20px}
+footer{max-width:1180px;margin:0 auto;padding:34px 18px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+footer h3{font-size:13px;text-transform:uppercase;letter-spacing:.15em;margin-bottom:6px}
+footer a{color:var(--tinta);font-weight:800}
+.legal{max-width:1180px;margin:0 auto;padding:0 18px 30px;color:var(--muted);font-size:12px}
+/* carrito */
+.flotante{position:fixed;right:16px;bottom:16px;z-index:70}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(410px,94vw);background:#fff;border-left:4px solid var(--tinta);z-index:80;padding:18px;overflow:auto;transform:translateX(105%);transition:.28s}
+.drawer.open{transform:none}
+.linea{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:2px dashed var(--linea);font-size:14px}
+.qty button{width:30px;height:30px;border-radius:10px;border:3px solid var(--tinta);background:var(--amarillo);font-weight:800;cursor:pointer}
+.total{display:flex;justify-content:space-between;font-family:Fredoka;font-size:22px;margin:12px 0}
+form.ped input,form.ped select{width:100%;border:3px solid var(--tinta);border-radius:12px;padding:11px;margin-top:6px;font-family:inherit}
+form.ped label{font-size:12px;font-weight:800;text-transform:uppercase;margin-top:10px;display:block}
+.msg{background:#FEF3C7;border:3px solid var(--tinta);border-radius:12px;padding:10px;margin-top:10px;font-size:14px}
+:focus-visible{outline:4px solid var(--rosa);outline-offset:2px}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .marco img{height:300px}
+  .grid{grid-template-columns:1fr 1fr}
+  .opis{grid-template-columns:1fr}
+  nav.desk{display:none}.burger{display:block}
+  footer{grid-template-columns:1fr}
+}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo sin backend — precios y datos de ejemplo</div>
+<header><div class="bar">
+<a class="brand" href="#top"><span class="sello">👼</span><span><b>El Ángel</b><small>Panadería · ejemplo</small></span></a>
+<nav class="desk"><a href="#menu">Pan</a><a href="#combos">Paquetes</a><a href="#seguir">Seguir pedido</a><a href="#contacto">Contacto</a></nav>
+<div style="display:flex;gap:8px;align-items:center"><a class="btn btn-amarillo" href="#menu" style="padding:10px 20px">Pedir</a><button class="burger" id="burger" aria-expanded="false" aria-label="Abrir menú">☰</button></div>
+</div><nav class="mobile-menu" id="mm"><a href="#menu">Pan</a><a href="#combos">Paquetes</a><a href="#seguir">Seguir pedido</a><a href="#contacto">Contacto</a><a href="admin.html">Admin</a></nav></header>
+
+<section class="hero" id="top">
+<div>
+<span class="badge"><span class="dot"></span> Horneado hoy · ejemplo</span>
+<h1>Pan calientito <span class="rosa">que abraza</span><span class="sub">¡a precio de barrio!</span></h1>
+<p>Conchas, churros, rosca y bolillo. Arma tu pedido en 1 minuto y envíalo por WhatsApp. Sin apps raras, directo en tu celular.</p>
+<div class="cta-row"><a class="btn btn-rosa" href="#menu">Pedir ahora 👇</a><a class="btn btn-line" href="#combos">Ver paquetes</a></div>
+<p class="mini">Sin pago real · <a href="admin.html">Abrir admin demo (clave angel123)</a></p>
+</div>
+<div class="hero-media">
+<div class="marco"><img src="assets/hero-conchas.jpg" alt="Conchas mexicanas recién horneadas" fetchpriority="high"></div>
+<div class="sticker st1">¡Recién horneado! 🥐</div>
+<div class="sticker st2">2x1 conchas*</div>
+<div class="sticker st3">⭐ 4.9 · ejemplo</div>
+</div>
+</section>
+
+<div class="marquee" aria-hidden="true"><span>CONCHAS • BOLILLO • OREJAS • CUERNITOS • CHURROS • ROSCA • CONCHAS • BOLILLO • OREJAS • CUERNITOS • CHURROS • ROSCA •&nbsp;</span><span>CONCHAS • BOLILLO • OREJAS • CUERNITOS • CHURROS • ROSCA • CONCHAS • BOLILLO • OREJAS • CUERNITOS • CHURROS • ROSCA •&nbsp;</span></div>
+<div class="promo" id="promoBar"><b id="promoTxt">Cargando promo…</b><small>Promo de ejemplo, se edita en el admin.</small></div>
+
+<section class="bloque" id="menu">
+<span class="k2">Menú de ejemplo</span>
+<h2 class="t">Elige tu antojo</h2>
+<p class="sub">Fotos Pixabay descargadas · Precios MXN inventados.</p>
+<div class="cats" id="cats"></div>
+<div class="grid" id="grid"></div>
+</section>
+
+<section class="bloque" id="combos" style="padding-top:0">
+<span class="k2">Ahorra</span>
+<h2 class="t">Paquetes para compartir</h2>
+<div class="grid2" id="combosGrid"></div>
+</section>
+
+<section class="bloque" id="seguir" style="padding-top:0">
+<span class="k2">Demo</span>
+<h2 class="t">Sigue tu pedido</h2>
+<div class="panel" style="max-width:560px"><label for="code">Código (ej. ANG-1234)</label><input id="code" maxlength="12" placeholder="ANG-XXXX"><div style="margin-top:10px;display:flex;gap:8px"><button class="btn" id="btnSeg">Consultar</button></div><div class="msg" id="msgSeg" hidden></div></div>
+<figure class="marco" style="margin-top:18px;transform:rotate(-1deg)"><img src="assets/local-mostrador.jpg" alt="Mostrador de panadería con pan variado" loading="lazy" style="height:300px"></figure>
+</section>
+
+<section class="bloque" id="opiniones" style="padding-top:0">
+<span class="k2">Barrio love</span>
+<h2 class="t">Lo que dicen (ejemplo)</h2>
+<div class="opis">
+<div class="opi"><b>★★★★★</b><p>"La concha de chocolate vuela. Pido por WhatsApp y recojo sin fila."</p><small>— Mari, ejemplo</small></div>
+<div class="opi"><b>★★★★★</b><p>"El paquete desayuno salvó mi domingo familiar."</p><small>— Luis, ejemplo</small></div>
+<div class="opi"><b>★★★★★</b><p>"Bolillo crujiente de verdad, como el de antes."</p><small>— Doña Tere, ejemplo</small></div>
+</div>
+</section>
+
+<div class="hours">Lun–Dom · <strong>7:00 – 21:00</strong> · <span style="font-size:13px">Horario de ejemplo</span></div>
+<footer id="contacto">
+<div><h3>📍 Dirección (ejemplo)</h3><p>Av. del Maíz 123, Ciudad Ejemplo<br><a href="https://maps.google.com/?q=Av.+del+Maíz+123" target="_blank" rel="noopener">Cómo llegar</a></p></div>
+<div><h3>💬 Contacto (ejemplo)</h3><p>WhatsApp <a href="#" id="waLink">+52 000 000 0000</a><br>Lun–Dom 7:00–21:00</p></div>
+<div><h3>👼 El Ángel</h3><p class="sub">Fotos: Pixabay. Material descargado, sin hotlinks.<br><a href="admin.html">Admin demo</a> · Frontend sin backend, listo para API.</p></div>
+</footer>
+<p class="legal">Precios, dirección y opiniones inventados para demo. Al conectar tu backend, el catálogo y pedidos vendrán de tu API.</p>
+
+<button class="btn flotante" id="openCart">🛒 Carrito (<span id="nCart">0</span>)</button>
+<aside class="drawer" id="drawer" aria-label="Carrito">
+<h2 class="display">Tu pedido</h2><p class="sub">Demo sin pago.</p>
+<div id="lines"></div>
+<div class="total"><span>Total</span><span id="total">$0</span></div>
+<form class="ped" id="formPed"><label>Nombre</label><input id="nombre" required maxlength="40" placeholder="Ej. María"><label>Entrega</label><select id="tipo"><option>Recoger</option><option>Domicilio (ejemplo)</option></select><label>Nota</label><input id="nota" maxlength="80" placeholder="Opcional"><button class="btn btn-amarillo" type="submit" style="width:100%;margin-top:12px">Guardar pedido</button></form>
+<button class="btn btn-whats" id="waSend" style="width:100%;margin-top:8px">Enviar por WhatsApp</button>
+<button class="btn btn-line" id="vaciar" style="width:100%;margin-top:8px">Vaciar</button>
+<div class="msg" id="msgPed" hidden></div>
+</aside>
+
+<script src="js/api.js"></script>
+<script>
+(function(){
+  var api = window.AngelApi;
+  var menu = api.getMenu(), combos = api.getCombos(), cfg = api.getCfg(), cart = api.getCart();
+  document.getElementById("waLink").href = "https://wa.me/" + cfg.wa;
+  var catAct = "Todo";
+  function cats(){ var c=["Todo"]; menu.forEach(function(p){ if(c.indexOf(p.cat)<0) c.push(p.cat); }); return c; }
+  function pintarCats(){ var w=document.getElementById("cats"); w.innerHTML=""; cats().forEach(function(c){ var b=document.createElement("button"); b.textContent=c; if(c===catAct) b.classList.add("activo"); b.onclick=function(){ catAct=c; pintarCats(); pintarMenu(); }; w.appendChild(b); }); }
+  function pintarMenu(){ var g=document.getElementById("grid"); g.innerHTML=""; menu.filter(function(p){ return catAct==="Todo"||p.cat===catAct; }).forEach(function(p){ var d=document.createElement("div"); d.className="card"; d.innerHTML="<img loading='lazy'><div class='pad'><span class='tag'></span><b></b><small></small><div class='fila'><span class='precio'></span></div></div>"; d.querySelector("img").src=p.img; d.querySelector("img").alt=p.nombre; d.querySelector(".tag").textContent=p.cat; d.querySelector("b").textContent=p.nombre; d.querySelector("small").textContent=p.desc; d.querySelector(".precio").textContent="$"+p.precio; var b=document.createElement("button"); b.className="add"; b.textContent="Agregar +"; b.onclick=function(){ cart.push({kind:"pan",id:p.id}); api.saveCart(cart); pintarCart(); }; d.querySelector(".fila").appendChild(b); g.appendChild(d); }); }
+  var colores=["c1","c2"];
+  function pintarCombos(){ var g=document.getElementById("combosGrid"); g.innerHTML=""; combos.filter(function(c){ return c.activo; }).forEach(function(c,i){ var d=document.createElement("div"); d.className="combo "+colores[i%2]; d.innerHTML="<h3></h3><p></p><div class='fila'><span class='precio'></span></div>"; d.querySelector("h3").textContent="🎁 "+c.nombre; d.querySelector("p").textContent=c.desc+" · "+(c.vigencia||""); d.querySelector(".precio").textContent="$"+c.precio; var b=document.createElement("button"); b.className="add"; b.style.background="#fff"; b.style.color="#2B1408"; b.textContent="Agregar +"; b.onclick=function(){ cart.push({kind:"combo",id:c.id}); api.saveCart(cart); pintarCart(); }; d.querySelector(".fila").appendChild(b); g.appendChild(d); }); }
+  function nom(it){ if(it.kind==="combo"){ var c=combos.find(function(x){return x.id===it.id;}); return c?c.nombre+" (paquete)":it.id; } var p=menu.find(function(x){return x.id===it.id;}); return p?p.nombre:it.id; }
+  function pre(it){ if(it.kind==="combo"){ var c=combos.find(function(x){return x.id===it.id;}); return c?+c.precio:0; } var p=menu.find(function(x){return x.id===it.id;}); return p?+p.precio:0; }
+  function pintarCart(){ document.getElementById("nCart").textContent=cart.length; var w=document.getElementById("lines"); w.innerHTML=""; var agg={}; cart.forEach(function(it,i){ var k=it.kind+":"+it.id; if(!agg[k]) agg[k]={it:it,n:0,ix:[]}; agg[k].n++; agg[k].ix.push(i); }); Object.keys(agg).forEach(function(k){ var a=agg[k], d=document.createElement("div"); d.className="linea"; var s=document.createElement("span"); s.textContent=a.n+"× "+nom(a.it)+" — $"+(pre(a.it)*a.n); var q=document.createElement("div"); q.className="qty"; var m=document.createElement("button"); m.textContent="−"; m.setAttribute("aria-label","Quitar uno"); m.onclick=function(){ cart.splice(a.ix.pop(),1); api.saveCart(cart); pintarCart(); }; q.appendChild(m); d.appendChild(s); d.appendChild(q); w.appendChild(d); }); document.getElementById("total").textContent="$"+cart.reduce(function(s,it){return s+pre(it);},0); }
+  var dr=document.getElementById("drawer"); document.getElementById("openCart").onclick=function(){ dr.classList.toggle("open"); };
+  document.getElementById("vaciar").onclick=function(){ cart=[]; api.saveCart(cart); pintarCart(); };
+  document.getElementById("formPed").addEventListener("submit",function(e){ e.preventDefault(); var m=document.getElementById("msgPed"); m.hidden=false; if(!cart.length){ m.textContent="Carrito vacío."; return; } var t=cart.reduce(function(s,it){return s+pre(it);},0); var code="ANG-"+Math.floor(1000+Math.random()*9000); var os=api.getOrders(); os.push({code:code,fecha:new Date().toISOString(),nombre:document.getElementById("nombre").value,tipo:document.getElementById("tipo").value,nota:document.getElementById("nota").value,items:cart.slice(),total:t,estado:"pendiente"}); api.saveOrders(os); m.textContent="Pedido "+code+" guardado. Ahora envíalo por WhatsApp."; cart=[]; api.saveCart(cart); pintarCart(); e.target.reset(); });
+  document.getElementById("waSend").onclick=function(){ var os=api.getOrders(); var last=os[os.length-1]; var items=cart.length?cart:(last?last.items:[]); var mm=document.getElementById("msgPed"); if(!items.length){ mm.hidden=false; mm.textContent="Sin pedido: agrega pan o guarda primero."; return; } var t=items.reduce(function(s,it){return s+pre(it);},0); var txt="Hola El Ángel (demo), quiero pedir:%0A"+items.map(function(it){return "- "+encodeURIComponent(nom(it));}).join("%0A")+"%0ATotal $"+t+" (ejemplo)"; window.open("https://wa.me/"+api.getCfg().wa+"?text="+txt,"_blank"); };
+  document.getElementById("btnSeg").onclick=function(){ var c=document.getElementById("code").value.trim().toUpperCase(), m=document.getElementById("msgSeg"); m.hidden=false; var o=api.getOrders().find(function(x){return x.code===c;}); m.textContent=o?("Pedido "+o.code+": "+o.estado+" · $"+o.total):"Código no encontrado en este navegador (demo local)."; };
+  function tick(){ var p=api.getPromo(); document.getElementById("promoTxt").textContent=(p&&p.activo)?(p.texto||"Promo"):"Sin promo activa (se gestiona en admin)"; }
+  tick(); setInterval(tick,5000);
+  var b=document.getElementById("burger"), mm=document.getElementById("mm"); b.onclick=function(){ var o=mm.classList.toggle("open"); b.setAttribute("aria-expanded",o); };
+  pintarCats(); pintarMenu(); pintarCombos(); pintarCart();
+  window.addEventListener("storage",function(){ menu=api.getMenu(); combos=api.getCombos(); pintarMenu(); pintarCombos(); });
+})();
+</script>
+</body>
+</html>
