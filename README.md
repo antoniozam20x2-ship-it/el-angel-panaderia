@@ -6,7 +6,7 @@
 Demo moderna juvenil. Todo ejemplo. Sin pago real.
 
 ## Ver local
-- `node server.js` → http://localhost:8080
+- Sitio 100% estático. Prueba con `npx serve` o la extensión Live Server → abre `index.html`
 - Tienda: `/index.html` · Admin: `/admin.html` (clave demo `angel123`)
 
 ## URL temporal celular (con datos)
